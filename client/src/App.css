@@ -1,0 +1,198 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.container{
+  width: 100vw;
+  height: 100vh;
+}
+
+.top-interface{
+  height: 85vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-content: center; 
+  position: relative;
+
+}
+
+.top-interface:after, .top-interface:before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  z-index: -2; 
+}
+
+.top-interface:after{
+  background: linear-gradient(to right,navy,transparent);
+  background-size: 400%;
+  animation: colorChange 20s linear infinite;
+}
+
+.top-interface:before{
+  background-color: #FF0080;
+}
+
+
+@keyframes colorChange {
+  25%{background-position: 0 100%}
+  50%{background-position: 100% 100%}
+  75%{background-position: 100% 0}
+  100%{filter:hue-rotate(360deg)}
+}
+.title-input{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+  height: 83vh;
+}
+
+.api-title{
+  color: white;
+  font-family: 'Allerta Stencil', sans-serif;
+  letter-spacing: 5px;
+  font-size: 55px;
+  text-align: center;
+  text-shadow: 3px 3px #FF0080;
+  display: flex;
+}
+
+#snd-img-size{
+  height: 35vh;
+  width: 75vw;
+  display: flex;
+}
+
+.sound-img{
+  height: 35vh;
+  width: 75vw;
+  display: flex;
+}
+
+.api-instruct{
+  color: white;
+  font-family: 'Allerta Stencil', sans-serif;
+  align-content: center;
+  justify-content: center;
+  letter-spacing: 5px;
+  font-size: 20px;
+  text-shadow: 3px 3px #FF0080;
+  display: flex;
+  height: 3vh;
+  width: 45vw;
+}
+
+.input-submit{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  justify-content: space-around;
+  flex-direction: row;
+  width: 250px;
+
+}
+
+.input-year {
+  width: 100%;
+  height: 50px;
+  font-size: 25px;
+  font-family: 'Philosopher', sans-serif;
+  text-align: center;
+  padding-right: 25px;
+  border: none;
+  border-radius: 16px;
+  outline: none;
+}
+
+.submit-play{
+  width: 45px;
+  height: 45px;
+  z-index: 3;
+  position: relative;
+  margin-left: -51px;
+  margin-top: 4px; 
+  font-family: 'Philosopher', sans-serif;
+  padding: 10px 20px;
+  outline: none;
+  background: url("./search-2.png") no-repeat;
+  background-size: cover;
+  border: none;
+  border-radius: 10px; 
+}
+
+.submit-play:hover{
+  transform: translateX(-2px);
+} 
+
+.submit-play:active{
+    transform: translate(0.5px, 0.5px);
+}
+
+.formatPlaylist{
+  padding: 20px;
+  text-align: center;
+  font-family: 'Allerta Stencil', sans-serif;
+  letter-spacing: 5px;
+  font-size: 20px;
+  text-align: center;
+  text-shadow: 3px 3px #FF0080;
+}
+
+.login-spotify{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.link-btn{
+  border: 3px solid #FF0080;
+  border-radius: 5px;
+  padding: 15px;
+  padding-bottom: 20px;
+  color: rgb(183, 0, 255);
+  text-decoration: none;
+  font-family: 'Philosopher', sans-serif;
+  letter-spacing: 2px;
+  box-shadow: 0px 4px 2px rgba(41, 41, 41, 0.342)
+}
+
+.link-btn:hover{
+  background: linear-gradient(to right,navy,rgb(183, 0, 255));
+  color: white;
+  border: 3px solid white;
+  border-radius: 5px;
+
+}
+
+.create-playlist{
+  border: 3px solid #FF0080;
+  border-radius: 5px;
+  color: rgb(183, 0, 255);
+  text-decoration: none;
+  font-family: 'Philosopher', sans-serif;
+  letter-spacing: 2px;
+  box-shadow: 0px 4px 2px rgba(41, 41, 41, 0.342);
+ width: 150px;
+ height: 50px;
+}
+
+.create-playlist:hover{
+  background: linear-gradient(to right,navy,rgb(183, 0, 255));
+  color: white;
+  border: 3px solid white;
+  border-radius: 5px;
+}
+
+.btn-holder{
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+  width: 150px;
+ height: 50px;
+}
+
