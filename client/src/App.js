@@ -14,6 +14,7 @@ class App extends Component {
       spotifyApi.setAccessToken(token);
     }
     this.state = {
+      songs: '',
       loggedIn: token ? true : false,
       nowPlaying: { name: 'Not Checked', albumArt: ''},
       createBYPlaylist: null
@@ -48,11 +49,31 @@ class App extends Component {
   //Search Tracks By Year
   getTracksByYear(){
     let year=document.querySelector('.input-year').value
+    let albumNames = [];
+    let songNames = [];
+    // let songNames = [];
     console.log(year)
     spotifyApi.searchTracks('year:' + year)
   .then((response) => {
-    console.log('Search by ' + year, response);
-  }, function(err) {
+    // return response.tracks.items.map(function(a){return a.album.name});
+    for(let i = 0; i < response.tracks.items.length; i++) {
+      let album = response.tracks.items[i].album.name;
+      let jam = response.tracks.items[i].name
+      albumNames.push(album);
+      songNames.push(jam)
+      // console.log(album);
+      // console.log(this.state.songs);
+      // console.log(response.tracks.items.length);
+      // console.log(albumNames);
+    }
+     this.setState({
+       songs: songNames,
+       albums: albumNames
+     })
+      console.log('Search by ' + year);
+    }).then((function(response){
+    console.log(response);
+  }), function(err) {
     console.error(err);
   });
   }
@@ -69,6 +90,25 @@ class App extends Component {
  
 
   render() {
+
+    let titles = [];
+
+    // // // albumNames.push(this.state.album)
+    
+      for(let i = 0; i < this.state.songs.length; i++) {
+
+       titles.push(
+       <ul>
+         <li>{this.state.songs[i]}</li>
+         </ul>
+         
+         );
+      
+      }
+    
+console.log(titles)
+   
+
     return (
       <div className="container">
        <div className="top-interface">
@@ -76,7 +116,7 @@ class App extends Component {
          <div className="title-input">
            <h1 className="api-title">Birthyear Playlist</h1>
            <p className="api-instruct">Search for your birthyear below</p>
-           <img src={soundwaves} className="sound-img" alt="soundwave" />
+           <img src={soundwaves} className="sound-img" alt="soundwaves" />
            <div className="input-submit">
                  <input type="text" 
                  className="input-year" placeholder="Search"></input>
@@ -102,11 +142,13 @@ class App extends Component {
          </div>
         {/* /*Playback State Displayed */}
            <div style={{'margin': '25px', 'marginTop': '45px'}}>
-        Now Playing: { this.state.nowPlaying.name }
+            {/* <li>{this.state.album}</li>      */}
+            {titles} 
+            {/* <ul><li>{`${this.state.songs}`}</li></ul>      */}
       </div>
       {/* Album Art of Playback State Displayed */}
       <div style={{'margin': '25px'}}>
-        <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }}/>
+        <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} alt="album art" />
        </div>
        {/* Check Playback State Button */}
        { this.state.loggedIn &&
