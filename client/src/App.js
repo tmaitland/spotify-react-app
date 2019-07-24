@@ -49,6 +49,8 @@ class App extends Component {
   //Search Tracks By Year
   getTracksByYear(){
     let year=document.querySelector('.input-year').value
+    let artistNames = [];
+    let albumImages = [];
     let albumNames = [];
     let songNames = [];
     // let songNames = [];
@@ -57,18 +59,27 @@ class App extends Component {
   .then((response) => {
     // return response.tracks.items.map(function(a){return a.album.name});
     for(let i = 0; i < response.tracks.items.length; i++) {
+      let artist = response.tracks.items[i].artists[0].name
+      let image = response.tracks.items[i].album.images[1].url;
       let album = response.tracks.items[i].album.name;
       let jam = response.tracks.items[i].name
+
+      artistNames.push(artist);
+      albumImages.push(image);
       albumNames.push(album);
       songNames.push(jam)
       // console.log(album);
       // console.log(this.state.songs);
-      // console.log(response.tracks.items.length);
+      // console.log(artist);
+      // console.log(image);
+      // console.log(response.tracks.items);
       // console.log(albumNames);
     }
      this.setState({
        songs: songNames,
-       albums: albumNames
+       albums: albumNames,
+       images: albumImages,
+       artists: artistNames
      })
       console.log('Search by ' + year);
     }).then((function(response){
@@ -98,15 +109,16 @@ class App extends Component {
       for(let i = 0; i < this.state.songs.length; i++) {
 
        titles.push(
+         
        <ul>
-         <li>{this.state.songs[i]}</li>
+         <li>Album: <img src={this.state.images[i]} alt="album covers"/>Song: {this.state.songs[i]}, Artist: {this.state.artists[i]}, Album: {this.state.albums[i]}</li>
          </ul>
          
          );
       
       }
     
-console.log(titles)
+// console.log(titles)
    
 
     return (
